@@ -4,7 +4,6 @@ etc/apns-conf.xml
 # Audio
 lib/hw/audio.playback_record.default.so
 lib/hw/audio.primary.universal8895.so
-lib/hw/audio.tms.default.so
 lib/libSamsungPostProcessConvertor.so
 lib/lib_SamsungRec_06006.so
 lib/lib_SoundAlive_SRC384_ver320.so
