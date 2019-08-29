@@ -16,3 +16,6 @@
 
 # Inherit from common
 $(call inherit-product, device/samsung/universal8895-common/device-common.mk)
+
+# Vendor blobs
+$(call inherit-product-if-exists, vendor/samsung/greatlte/greatlte-vendor.mk)

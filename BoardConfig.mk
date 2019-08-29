@@ -23,3 +23,6 @@ TARGET_OTA_ASSERT_DEVICE := greatlte
 
 # Kernel
 TARGET_KERNEL_CONFIG := exynos8895-greatlte_defconfig
+
+# Vendor blobs
+-include vendor/samsung/greatlte/BoardConfigVendor.mk
