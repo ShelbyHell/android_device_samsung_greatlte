@@ -137,9 +137,6 @@ sed -i 's/str_parms_get_str/str_parms_get_mod/g' $BLOB_ROOT/lib/hw/audio.primary
 "${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so $BLOB_ROOT/vendor/lib/libwvhidl.so
 "${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so $BLOB_ROOT/vendor/lib/mediadrm/libwvdrmengine.so
 
-# charger
-"${PATCHELF}" --add-needed libmemset.so $BLOB_ROOT/lib64/libpixelflinger.so
-
 # Replace libvndsecril-client with libsecril-client
 "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib/libwrappergps.so
 "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib64/libwrappergps.so
