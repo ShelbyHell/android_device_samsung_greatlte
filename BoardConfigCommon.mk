@@ -108,9 +108,6 @@ TARGET_COPY_OUT_VENDOR := system/vendor
 # Device Tree
 BOARD_USES_DT := true
 
-# Renderscript
-OVERRIDE_RS_DRIVER := libRSDriverArm.so
-
 # Samsung HALs
 TARGET_POWERHAL_VARIANT := samsung
 
