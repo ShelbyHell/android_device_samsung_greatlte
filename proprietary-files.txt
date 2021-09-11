@@ -124,7 +124,6 @@ vendor/etc/init/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service.rc
 vendor/lib/egl/libGLES_mali.so
 vendor/lib/hw/hwcomposer.exynos5.so
 vendor/lib/libExynosHWCService.so
-vendor/lib/libRSDriverArm.so
 vendor/lib/libcsc.so
 vendor/lib/libexynosdisplay.so
 vendor/lib/libexynosutils.so
@@ -136,7 +135,6 @@ vendor/lib/libmpp.so
 vendor/lib64/egl/libGLES_mali.so
 vendor/lib64/hw/hwcomposer.exynos5.so
 vendor/lib64/libExynosHWCService.so
-vendor/lib64/libRSDriverArm.so
 vendor/lib64/libcsc.so
 vendor/lib64/libexynosdisplay.so|4d8b1877d2f0df185a10af996cc5e0bc1b663aa1
 vendor/lib64/libexynosutils.so
