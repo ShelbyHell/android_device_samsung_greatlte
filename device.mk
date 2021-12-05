@@ -334,7 +334,6 @@ $(call inherit-product, vendor/samsung/greatlte/greatlte-vendor.mk)
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-    macloader \
     wifiloader \
     hostapd \
     wificond \
