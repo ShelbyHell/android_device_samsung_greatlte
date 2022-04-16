@@ -7,7 +7,7 @@
 /dev/vfsspi                 u:object_r:fingerprint_device:s0
 /dev/sec-nfc                u:object_r:nfc_device:s0
 
-/dev/cpuset(/.*)?           u:object_r:cgroup:s0
+/dev/block/platform/11120000\.ufs/by-name/OMR u:object_r:metadata_block_device:s0
 
 # camera
 /dev/m2m1shot_scaler0       u:object_r:m2m1shot_device:s0

@@ -11,6 +11,8 @@
 /dev/block/platform/11120000.ufs/by-name/EFS            /efs        ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                           wait,check
 /dev/block/platform/11120000.ufs/by-name/CPEFS          /cpefs      ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic                           wait,check,nofail
 
+/dev/block/platform/11120000.ufs/by-name/OMR            /metadata   ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic wait,first_stage_mount,formattable,check
+
 # ADD FOR GOTA
 /dev/block/platform/11120000.ufs/by-name/MISC           /misc       emmc    defaults                                                                                                          defaults
  
