@@ -24,6 +24,8 @@ vendor/lib/libaudio_soundtrigger.so|a036bbde4b7b959faf584a9e669addab825776773101
 vendor/lib/libdatamod.so|64a046480dacde9869e1b60a5ac41c043a577f5f7fdfdb5ab5a33840f83cb931
 
 # Audio - Effects
+lib64/libprofileparamstorage.so
+lib/libprofileparamstorage.so
 vendor/lib/soundfx/libaudioeffectoffload.so
 vendor/lib/soundfx/libaudiosaplus_sec.so
 vendor/lib/soundfx/libgearvr.so
@@ -31,16 +33,13 @@ vendor/lib/soundfx/libmysound.so
 vendor/lib/soundfx/libmyspace.so
 vendor/lib/soundfx/libplaybackrecorder.so
 vendor/lib/soundfx/libsamsungSoundbooster_plus.so
-vendor/lib/soundfx/libswdap.so
 vendor/lib64/soundfx/libaudioeffectoffload.so
-vendor/lib64/soundfx/libswdap.so
 
 # Audio/Media configs
 etc/audio_effects.conf
 vendor/etc/SoundBoosterParam.txt
 vendor/etc/abox_debug.xml
 vendor/etc/audio_effects.conf
-vendor/etc/audio_effects.xml
 vendor/etc/audio_effects_common.conf
 vendor/etc/audio_effects_sec.xml
 vendor/etc/audio_policy.conf
