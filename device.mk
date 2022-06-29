@@ -24,7 +24,8 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Init files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/fstab.samsungexynos8895:$(TARGET_OUT_VENDOR_ETC)/fstab.samsungexynos8895
+    $(LOCAL_PATH)/init/fstab.samsungexynos8895:$(TARGET_OUT_VENDOR_ETC)/fstab.samsungexynos8895 \
+	$(LOCAL_PATH)/init/fstab.samsungexynos8895:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.samsungexynos8895
 
 # Vendor blobs
 $(call inherit-product, vendor/samsung/greatlte/greatlte-vendor.mk)
