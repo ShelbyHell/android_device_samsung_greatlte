@@ -64,6 +64,10 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     libkeymaster3device
 
+# Memtrack
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack-service.samsung-mali
+
 # OMX
 PRODUCT_PACKAGES += \
     libstagefrighthw \
