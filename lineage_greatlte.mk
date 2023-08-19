@@ -33,3 +33,8 @@ PRODUCT_MODEL := SM-N950F
 PRODUCT_MANUFACTURER := samsung
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=greatltexx \
+    PRIVATE_BUILD_DESC="greatltexx-user 8.0.0 R16NW N950FXXU3CRC1 release-keys"
+
+BUILD_FINGERPRINT := samsung/greatltexx/greatlte:8.0.0/R16NW/N950FXXU3CRC1:user/release-keys
