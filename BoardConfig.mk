@@ -17,6 +17,9 @@ TARGET_2ND_CPU_VARIANT := cortex-a53.a57
 TARGET_BOOTLOADER_BOARD_NAME := universal8895
 TARGET_NO_BOOTLOADER := true
 
+# Display
+BOARD_MINIMUM_DISPLAY_BRIGHTNESS := 1
+
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -35,6 +38,7 @@ BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Platform
+include hardware/samsung_slsi-linaro/config/BoardConfig8895.mk
 TARGET_BOARD_PLATFORM := exynos5
 TARGET_SOC := exynos8895
 BOARD_VENDOR := samsung

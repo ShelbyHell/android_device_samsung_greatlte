@@ -244,12 +244,10 @@ vendor/lib64/hw/gatekeeper.exynos8895.so
 lib/libGrallocWrapper.so
 lib/libacryl.so
 lib/libexynosgscaler.so
-lib/libexynosscaler.so
 lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
 lib64/libGrallocWrapper.so
 lib64/libacryl.so
 lib64/libexynosgscaler.so
-lib64/libexynosscaler.so
 lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
 vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service
 vendor/etc/init/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service.rc
@@ -257,7 +255,6 @@ vendor/lib/egl/libGLES_mali.so
 vendor/lib/libExynosHWCService.so
 vendor/lib/libcsc.so
 vendor/lib/libexynosdisplay.so
-vendor/lib/libexynosutils.so
 vendor/lib/libexynosv4l2.so
 vendor/lib/libhwc2on1adapter.so
 vendor/lib/libhwc2onfbadapter.so
@@ -267,7 +264,6 @@ vendor/lib64/egl/libGLES_mali.so
 vendor/lib64/libExynosHWCService.so
 vendor/lib64/libcsc.so
 vendor/lib64/libexynosdisplay.so
-vendor/lib64/libexynosutils.so
 vendor/lib64/libexynosv4l2.so
 vendor/lib64/libhwc2on1adapter.so
 vendor/lib64/libhwc2onfbadapter.so
@@ -362,36 +358,6 @@ vendor/etc/nfc/SGP/sec_s3nrn82_rfreg.bin
 vendor/etc/nfc/sec_s3nrn82_rfreg.bin
 vendor/firmware/nfc/sec_s3nrn82_firmware.bin
 vendor/lib64/nfc_nci_sec.so
-
-# OMX
-lib/libExynosOMX_Core.so
-lib/libExynosOMX_Resourcemanager.so
-lib/libstagefrighthw.so
-lib/omx/libOMX.Exynos.AVC.Decoder.so
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.HEVC.Decoder.so
-lib/omx/libOMX.Exynos.HEVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
-lib/omx/libOMX.Exynos.VP9.Decoder.so
-lib/omx/libOMX.Exynos.VP9.Encoder.so
-lib/omx/libOMX.Exynos.WMV.Decoder.so
-lib64/libExynosOMX_Core.so
-lib64/libExynosOMX_Resourcemanager.so
-lib64/libstagefrighthw.so
-lib64/omx/libOMX.Exynos.AVC.Decoder.so
-lib64/omx/libOMX.Exynos.AVC.Encoder.so
-lib64/omx/libOMX.Exynos.HEVC.Decoder.so
-lib64/omx/libOMX.Exynos.HEVC.Encoder.so
-lib64/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib64/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib64/omx/libOMX.Exynos.VP8.Decoder.so
-lib64/omx/libOMX.Exynos.VP8.Encoder.so
-lib64/omx/libOMX.Exynos.VP9.Decoder.so
-lib64/omx/libOMX.Exynos.VP9.Encoder.so
-lib64/omx/libOMX.Exynos.WMV.Decoder.so
 
 # RIL
 lib/libsecnativefeature.so
