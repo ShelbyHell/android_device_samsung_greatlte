@@ -153,6 +153,9 @@ BOARD_SEPOLICY_DIRS += device/samsung/universal8895-common/sepolicy/vendor
 # Ril
 ENABLE_VENDOR_RIL_SERVICE := true
 
+# Vendor Security patch level
+VENDOR_SECURITY_PATCH := 2021-04-01
+
 # Shims
 TARGET_LD_SHIM_LIBS += \
     /system/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so \
