@@ -17,6 +17,9 @@ ro.frp.pst=/dev/block/persistent
 # Dalvik dex2oat
 dalvik.vm.dex2oat64.enabled=true
 
+# Power HAL
+vendor.powerhal.disp.idle_support=false
+
 # Wifi
 wifi.direct.interface=p2p-dev-wlan0
 persist.debug.wfd.enable=1
