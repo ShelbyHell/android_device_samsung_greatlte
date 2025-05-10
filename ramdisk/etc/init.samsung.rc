@@ -464,7 +464,7 @@ on boot
 	chown system radio /sys/class/power_supply/battery/gps
 	chown system radio /sys/class/power_supply/battery/wifi
 	chown system radio /sys/class/power_supply/battery/lte
-	chown system radio /sys/class/power_supply/battery/lcd
+	chown system system /sys/class/power_supply/battery/lcd
 	chown system radio /sys/class/power_supply/ps/status
 	chmod 0664 /sys/class/power_supply/battery/wc_control
 	chmod 0664 /sys/class/power_supply/battery/wc_control_cnt
@@ -715,8 +715,8 @@ on boot
     chown radio system /sys/devices/virtual/data_on
 
     # Permissions for Touchscreen
-    chown system radio /sys/class/sec/tsp/cmd
-    chown system radio /sys/class/sec/tsp/cmd2
+    chown system system /sys/class/sec/tsp/cmd
+    chown system system /sys/class/sec/tsp/cmd2
     chmod 0664 /sys/class/sec/tsp/cmd
     chmod 0664 /sys/class/sec/tsp/cmd2
     chown system system /sys/class/sec/tsp/input/enabled
