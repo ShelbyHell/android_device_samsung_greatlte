@@ -116,9 +116,6 @@ TARGET_COPY_OUT_VENDOR := system/vendor
 # Device Tree
 BOARD_USES_DT := true
 
-# Samsung HALs
-TARGET_POWERHAL_VARIANT := samsung
-
 # Bluetooth
 BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_HAVE_BLUETOOTH := true
