@@ -8,6 +8,13 @@ TARGET_SCREEN_WIDTH := 1440
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
+# Fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
+
+# Partitions - dynamic
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 # Graphics
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := xlarge

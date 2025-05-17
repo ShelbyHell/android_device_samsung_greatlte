@@ -39,5 +39,8 @@ TARGET_BOARD_PLATFORM := exynos5
 TARGET_SOC := exynos8895
 BOARD_VENDOR := samsung
 
+# Partitions
+include device/samsung/greatlte/fsconfig_dynamic.mk
+
 # Inherit the proprietary files
 include vendor/samsung/greatlte/BoardConfigVendor.mk
