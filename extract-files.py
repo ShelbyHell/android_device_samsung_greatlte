@@ -4,6 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+
+from extract_utils.fixups_lib import (
+    lib_fixup_remove,
+    lib_fixups,
+    lib_fixups_user_type,
+)
 from extract_utils.fixups_blob import (
     blob_fixup,
     blob_fixups_user_type,
@@ -20,6 +26,13 @@ namespace_imports = [
     'vendor/samsung/universal8895-common',
 ]
 
+lib_fixups: lib_fixups_user_type = {
+    **lib_fixups,
+    (
+        'libOpenCL',
+    ): lib_fixup_remove,
+}
+
 blob_fixups: blob_fixups_user_type = {
     ('vendor/firmware/fimc_is_lib.bin',
 	 'vendor/firmware/fimc_is_rta_2l2_3h1.bin',
@@ -33,8 +46,8 @@ module = ExtractUtilsModule(
     'greatlte',
     'samsung',
     namespace_imports=namespace_imports,
-    add_firmware_proprietary_file=True,
     blob_fixups=blob_fixups,
+    check_elf=True,
 )
 
 if __name__ == '__main__':

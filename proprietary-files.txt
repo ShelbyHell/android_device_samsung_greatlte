@@ -3,7 +3,7 @@ vendor/lib64/soundfx/libswdap.so
 vendor/lib/soundfx/libswdap.so
 
 # Camera
-system/lib/hw/camera.universal8895.so:lib/hw/camera.vendor.universal8895.so
+system/lib/hw/camera.universal8895.so:system/lib/hw/camera.vendor.universal8895.so
 system/lib/libFacePreProcessing.camera.samsung.so
 system/lib/libFacePreProcessing_jni.camera.samsung.so
 system/lib/libFacialBasedSelfieCorrection.camera.samsung.so
@@ -22,7 +22,7 @@ system/lib/libsmartfocus_interface.so
 system/lib/libsmartfocusengine.so
 system/lib/libuniapi.so
 system/lib/libuniplugin.so
-system/lib64/hw/camera.universal8895.so:lib64/hw/camera.vendor.universal8895.so
+system/lib64/hw/camera.universal8895.so:system/lib64/hw/camera.vendor.universal8895.so
 system/lib64/libIDDQD_core.so
 system/lib64/libIDDQD_interface.so
 system/lib64/libblurdetection.so
@@ -50,7 +50,7 @@ vendor/lib/libopenvx.so
 vendor/lib/libsmart_cropping.camera.samsung.so
 vendor/lib/libsnap_caffe.so
 vendor/lib/libsnap_caffe_wrapper.so
-vendor/lib/libsnap_compute.so
+vendor/lib/libsnap_compute.so;DISABLE_CHECKELF
 vendor/lib/libsnap_compute_wrapper.so
 vendor/lib/libsnap_vndk.so
 vendor/lib/libsomp.camera.samsung.so
@@ -66,7 +66,7 @@ vendor/lib64/libopenvx.so
 vendor/lib64/libsmart_cropping.camera.samsung.so
 vendor/lib64/libsnap_caffe.so
 vendor/lib64/libsnap_caffe_wrapper.so
-vendor/lib64/libsnap_compute.so
+vendor/lib64/libsnap_compute.so;DISABLE_CHECKELF
 vendor/lib64/libsnap_compute_wrapper.so
 vendor/lib64/libsnap_vndk.so
 vendor/lib64/libsomp.camera.samsung.so
