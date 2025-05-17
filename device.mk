@@ -27,5 +27,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/fstab.samsungexynos8895:$(TARGET_OUT_VENDOR_ETC)/fstab.samsungexynos8895 \
 	$(LOCAL_PATH)/init/fstab.samsungexynos8895:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.samsungexynos8895
 
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/init/init.recovery.universal8895.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.universal8895.rc \
+    $(LOCAL_PATH)/init/init.samsungexynos8895.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsungexynos8895.rc \
+    $(LOCAL_PATH)/init/init.samsungexynos8895.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsungexynos8895.usb.rc \
+	$(LOCAL_PATH)/init/init.samsung.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsung.rc \
+	$(LOCAL_PATH)/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
+
 # Vendor blobs
 $(call inherit-product, vendor/samsung/greatlte/greatlte-vendor.mk)
