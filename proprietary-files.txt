@@ -62,17 +62,7 @@ vendor/etc/audio_policy_volumes.xml
 vendor/etc/default_volume_tables.xml
 
 # Bluetooth
-lib/android.hardware.bluetooth.a2dp@1.0.so
-lib64/android.hardware.bluetooth.a2dp@1.0.so
-lib64/android.hardware.bluetooth@1.0.so
-lib64/vendor.samsung.hardware.bluetooth@1.0.so
-vendor/bin/hw/android.hardware.bluetooth@1.0-service
-vendor/etc/init/android.hardware.bluetooth@1.0-service.rc
-vendor/lib64/hw/android.hardware.bluetooth@1.0-impl.so
 vendor/lib64/libbt-vendor.so
-
-# Bluetooth - APT-X
-lib64/libaptX_encoder.so
 
 # Camera
 lib/hw/camera.universal8895.so
@@ -268,7 +258,6 @@ vendor/etc/init/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service.rc
 vendor/lib/egl/libGLES_mali.so
 vendor/lib/hw/hwcomposer.exynos5.so
 vendor/lib/libExynosHWCService.so
-vendor/lib/libRSDriverArm.so
 vendor/lib/libcsc.so
 vendor/lib/libexynosdisplay.so
 vendor/lib/libexynosutils.so
@@ -280,7 +269,6 @@ vendor/lib/libmpp.so
 vendor/lib64/egl/libGLES_mali.so
 vendor/lib64/hw/hwcomposer.exynos5.so
 vendor/lib64/libExynosHWCService.so
-vendor/lib64/libRSDriverArm.so
 vendor/lib64/libcsc.so
 vendor/lib64/libexynosdisplay.so
 vendor/lib64/libexynosutils.so
@@ -466,7 +454,6 @@ vendor/lib/libstagefright_soft_g711dec.so
 # WiFi
 vendor/bin/hw/macloader
 vendor/bin/hw/mfgloader
-vendor/etc/init/wifi.rc|194ef6e0e51f4b9a60d229b927724d06c83d30db
 vendor/etc/init/wifi_brcm.rc
 vendor/etc/wifi/bcmdhd_clm.blob
 vendor/etc/wifi/bcmdhd_mfg.bin_b0
