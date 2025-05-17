@@ -42,5 +42,8 @@ BOARD_VENDOR := samsung
 # Partitions
 include device/samsung/greatlte/fsconfig_dynamic.mk
 
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/init/fstab.samsungexynos8895
+
 # Inherit the proprietary files
 include vendor/samsung/greatlte/BoardConfigVendor.mk
