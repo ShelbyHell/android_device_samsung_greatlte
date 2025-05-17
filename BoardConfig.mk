@@ -38,3 +38,6 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 -
 TARGET_BOARD_PLATFORM := exynos5
 TARGET_SOC := exynos8895
 BOARD_VENDOR := samsung
+
+# Inherit the proprietary files
+include vendor/samsung/greatlte/BoardConfigVendor.mk
