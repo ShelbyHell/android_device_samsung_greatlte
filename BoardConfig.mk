@@ -45,6 +45,10 @@ include device/samsung/greatlte/fsconfig_dynamic.mk
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/init/fstab.samsungexynos8895
 
+# VINTF
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/configs/vintf/manifest.xml
+
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI          := true
 TARGET_USES_64_BIT_BCMDHD        := true
