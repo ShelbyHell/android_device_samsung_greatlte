@@ -5,12 +5,46 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n.mk)
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl:64 \
+    android.hardware.bluetooth@1.0-service
+
+# Configstore
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-impl \
+    android.hardware.configstore@1.0-service
+
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
-# Fastbootd
+# Display
 PRODUCT_PACKAGES += \
-    fastbootd
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.2-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
+    hwcomposer.exynos5 \
+    gralloc.exynos5
+
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0 \
+    android.hardware.drm@1.1 \
+    libfwdlockengine \
+    libdrmclearkeyplugin \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.1-service.clearkey \
+    android.hardware.drm@1.0-impl
+
+# Fastbootd
+PRODUCT_PACKAGES += fastbootd
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service \
+    android.hardware.gatekeeper@1.0-impl \
+    libgatekeeper
 
 # Graphics
 # Device uses high-density artwork where available
@@ -18,6 +52,13 @@ PRODUCT_AAPT_CONFIG := xlarge
 PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0 \
+    android.hardware.keymaster@3.0-service \
+    android.hardware.keymaster@3.0-impl \
+    libkeymaster3device
 
 # Partitions - dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -34,6 +75,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/init.samsung.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.samsung.rc \
     $(LOCAL_PATH)/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     $(LOCAL_PATH)/init/wifi.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/wifi.rc
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0 \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += android.hardware.vibrator@1.0-service.samsung-haptic
 
 # Wi-Fi
 PRODUCT_PACKAGES += \

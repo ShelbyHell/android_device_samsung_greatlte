@@ -235,19 +235,17 @@ vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so
 vendor/lib64/hw/gps.default.so
 vendor/lib64/libwrappergps.so
 
-# Gatekeeper - from G950FXXS4CRLB
+# Gatekeeper
 vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc
 vendor/lib/hw/gatekeeper.exynos8895.so
 vendor/lib64/hw/gatekeeper.exynos8895.so
 
 # Graphics
-lib/hw/gralloc.exynos5.so
 lib/libGrallocWrapper.so
 lib/libacryl.so
 lib/libexynosgscaler.so
 lib/libexynosscaler.so
 lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-lib64/hw/gralloc.exynos5.so
 lib64/libGrallocWrapper.so
 lib64/libacryl.so
 lib64/libexynosgscaler.so
@@ -256,7 +254,6 @@ lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
 vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service
 vendor/etc/init/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service.rc
 vendor/lib/egl/libGLES_mali.so
-vendor/lib/hw/hwcomposer.exynos5.so
 vendor/lib/libExynosHWCService.so
 vendor/lib/libcsc.so
 vendor/lib/libexynosdisplay.so
@@ -267,7 +264,6 @@ vendor/lib/libhwc2onfbadapter.so
 vendor/lib/libion_exynos.so
 vendor/lib/libmpp.so
 vendor/lib64/egl/libGLES_mali.so
-vendor/lib64/hw/hwcomposer.exynos5.so
 vendor/lib64/libExynosHWCService.so
 vendor/lib64/libcsc.so
 vendor/lib64/libexynosdisplay.so
