@@ -14,16 +14,35 @@
 # limitations under the License.
 #
 
-COMMON_PATH := device/samsung/universal8895-common
+DEVICE_PATH := device/samsung/greatlte
 
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
 
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53.a57
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := greatlte
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BOARD_CUSTOM_BT_CONFIG := $(DEVICE_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_HAVE_BLUETOOTH := true
+
+# Backlight
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+
+# Build Hacks
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Display
 TARGET_SCREEN_DENSITY := 480
@@ -35,54 +54,31 @@ TARGET_SEC_FP_HAS_FINGERPRINT_GESTURES := true
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-# Properties
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/system.prop
-
-# Platform
-TARGET_BOARD_PLATFORM := exynos5
-TARGET_SOC := exynos8895
-TARGET_BOOTLOADER_BOARD_NAME := universal8895
-BOARD_VENDOR := samsung
-
-# Architecture
-TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-
-# Secondary Architecture
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a53.a57
-
-# Binder
-TARGET_USES_64_BIT_BINDER := true
-
-# Extracted with libbootimg
+# Kernel
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_IMAGE_NAME := Image
-#BOARD_KERNEL_CMDLINE := The bootloader ignores the cmdline from the boot.img
 BOARD_KERNEL_SEPARATED_DT := true
-TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
-BOARD_ROOT_EXTRA_FOLDERS += efs cpefs
-BOARD_USES_FULL_RECOVERY_IMAGE := false
-TARGET_KERNEL_ADDITIONAL_FLAGS := \
-    HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+BOARD_MKBOOTIMG_ARGS := \
+    --kernel_offset 0x00008000 \
+    --ramdisk_offset 0x01000000 \
+    --tags_offset 0x00000100
 
-# Kernel
+BOARD_USES_DT := true
+
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-
-# Kernel config
 TARGET_KERNEL_SOURCE := kernel/samsung/universal8895
+TARGET_KERNEL_CONFIG := exynos8895-greatlte_defconfig
+
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
+TARGET_KERNEL_ADDITIONAL_FLAGS := \
+    HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/power_supply/battery/batt_slate_mode
@@ -99,36 +95,51 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Partitions
-BOARD_USES_METADATA_PARTITION := true
+BOARD_FLASH_BLOCK_SIZE := 4096
 
 BOARD_BOOTIMAGE_PARTITION_SIZE     :=  41943040 #(40960 sda7)
+BOARD_CACHEIMAGE_PARTITION_SIZE    :=  524288000 #(512000 sda18)
 BOARD_RECOVERYIMAGE_PARTITION_SIZE :=  48234496 #(47104 sda8)
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   :=  4508876800 #(4454400 sda17)
 BOARD_USERDATAIMAGE_PARTITION_SIZE :=  58556678144 #(57184256 sda24)
-BOARD_CACHEIMAGE_PARTITION_SIZE    :=  524288000 #(512000 sda18)
-BOARD_FLASH_BLOCK_SIZE := 4096
 
-# Manifest
-PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
-
-# Vendor separation
+BOARD_ROOT_EXTRA_FOLDERS += efs cpefs
+BOARD_USES_METADATA_PARTITION := true
 TARGET_COPY_OUT_VENDOR := system/vendor
 
-# Device Tree
-BOARD_USES_DT := true
+# Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/system.prop
 
-# Bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/libbt_vndcfg.txt
-BOARD_HAVE_BLUETOOTH := true
-
-# Backlight
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+# Platform
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SOC := exynos8895
+TARGET_BOOTLOADER_BOARD_NAME := universal8895
+BOARD_VENDOR := samsung
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/ramdisk/etc/fstab.samsungexynos8895
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.samsungexynos8895
+BOARD_USES_FULL_RECOVERY_IMAGE := false
+
+# RIL
+ENABLE_VENDOR_RIL_SERVICE := true
+
+# Sepolicy
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+BOARD_SEPOLICY_TEE_FLAVOR := mobicore
+SELINUX_IGNORE_NEVERALLOWS := true
+include device/lineage/sepolicy/exynos/sepolicy.mk
+include device/samsung_slsi/sepolicy/sepolicy.mk
+
+# VINTF
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/vintf/manifest.xml
+
+# Vendor
+-include vendor/samsung/greatlte/BoardConfigVendor.mk
 
 # Wifi
+BOARD_HAVE_SAMSUNG_WIFI          := true
 TARGET_USES_64_BIT_BCMDHD        := true
 BOARD_WLAN_DEVICE                := bcmdhd
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
@@ -145,29 +156,3 @@ WIFI_DRIVER_FW_PATH_AP           := "/vendor/etc/wifi/bcmdhd_apsta.bin"
 WIFI_BAND                        := 802_11_ABG
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
-
-# MACLOADER
-BOARD_HAVE_SAMSUNG_WIFI          := true
-
-# Sepolicy
-include device/lineage/sepolicy/exynos/sepolicy.mk
-BOARD_SEPOLICY_TEE_FLAVOR := mobicore
-include device/samsung_slsi/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += device/samsung/universal8895-common/sepolicy/vendor
-SELINUX_IGNORE_NEVERALLOWS := true
-
-# Ril
-ENABLE_VENDOR_RIL_SERVICE := true
-
-# Shims
-TARGET_LD_SHIM_LIBS += \
-    /system/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so \
-    /system/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so \
-    /system/lib/libblurdetection_interface.so|/vendor/lib/idev0_shim.so \
-    /system/lib64/libblurdetection_interface.so|/vendor/lib64/idev0_shim.so \
-    /system/lib/libfocuspeaking_interface.so|/vendor/lib/idev0_shim.so \
-    /system/lib64/libfocuspeaking_interface.so|/vendor/lib64/idev0_shim.so \
-    /system/vendor/lib64/libexynosdisplay.so|/system/vendor/lib64/libexynosdisplay_shim.so \
-    /system/vendor/lib/libexynosdisplay.so|/system/vendor/lib/libexynosdisplay_shim.so \
-    /system/vendor/lib64/hw/hwcomposer.exynos5.so|/system/vendor/lib64/libexynosdisplay_shim.so \
-    /system/vendor/lib/hw/hwcomposer.exynos5.so|/system/vendor/lib/libexynosdisplay_shim.so

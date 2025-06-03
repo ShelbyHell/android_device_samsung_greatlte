@@ -20,7 +20,6 @@ vendor/lib/lib_SoundAlive_3DPosition_ver202.so|c9a2eec02cb518b0d11234f8a72f36ac3
 vendor/lib/libaboxpcmdump.so|247d47e5f9d4faf9c4d0d488c5c23be8090b6a17ec371ee68f6e739f5b31ba9e
 vendor/lib/libdatamod.so|64a046480dacde9869e1b60a5ac41c043a577f5f7fdfdb5ab5a33840f83cb931
 
-
 # Audio - Effects
 vendor/lib/soundfx/libaudioeffectoffload.so
 vendor/lib/soundfx/libaudiosaplus_sec.so
@@ -29,11 +28,13 @@ vendor/lib/soundfx/libmysound.so
 vendor/lib/soundfx/libmyspace.so
 vendor/lib/soundfx/libplaybackrecorder.so
 vendor/lib/soundfx/libsamsungSoundbooster_plus.so
+vendor/lib/soundfx/libswdap.so
 vendor/lib64/soundfx/libaudioeffectoffload.so
+vendor/lib64/soundfx/libswdap.so
 lib64/libprofileparamstorage.so
 lib/libprofileparamstorage.so
 
-# Audio/Media configs
+# Audio configs
 etc/audio_effects.conf
 vendor/etc/SoundBoosterParam.txt
 vendor/etc/abox_debug.xml
@@ -49,6 +50,77 @@ vendor/lib64/libbt-vendor.so
 
 # Bluetooth (aptX) - from crosshatch - QP1A.190711.020
 product/lib64/libaptX_encoder.so|df1c89d7af1bb35808d5fe3496b04ba066c10cbc
+
+# Camera
+lib/hw/camera.universal8895.so:lib/hw/camera.vendor.universal8895.so
+lib/libFacePreProcessing.camera.samsung.so
+lib/libFacePreProcessing_jni.camera.samsung.so
+lib/libFacialBasedSelfieCorrection.camera.samsung.so
+lib/libIDDQD_core.so
+lib/libIDDQD_interface.so
+lib/libblurdetection.so
+lib/libblurdetection_interface.so
+lib/libexynoscamera.so
+lib/libexynoscamera3.so
+lib/libfocuspeaking.so
+lib/libfocuspeaking_interface.so
+lib/libhifills_interface.so
+lib/libhwjpeg.so
+lib/libsensorlistener.so
+lib/libsmartfocus_interface.so
+lib/libsmartfocusengine.so
+lib/libuniapi.so
+lib/libuniplugin.so
+lib64/hw/camera.universal8895.so:lib64/hw/camera.vendor.universal8895.so
+lib64/libIDDQD_core.so
+lib64/libIDDQD_interface.so
+lib64/libblurdetection.so
+lib64/libblurdetection_interface.so
+lib64/libexynoscamera.so
+lib64/libexynoscamera3.so
+lib64/libfocuspeaking.so
+lib64/libfocuspeaking_interface.so
+lib64/libhifills_interface.so
+lib64/libhwjpeg.so
+lib64/libsensorlistener.so
+lib64/libsmartfocus_interface.so
+lib64/libsmartfocusengine.so
+lib64/libuniapi.so
+lib64/libuniplugin.so
+vendor/etc/snap_gpu_kernel_32.bin
+vendor/etc/snap_gpu_kernel_64.bin
+vendor/lib/libDLInterface.camera.samsung.so
+vendor/lib/libOpenCv.camera.samsung.so
+vendor/lib/libhifistill.so
+vendor/lib/libhifistill_tuning.so
+vendor/lib/libhumantracking_util.camera.samsung.so
+vendor/lib/libiva_android_hal.so
+vendor/lib/libopenvx.so
+vendor/lib/libsmart_cropping.camera.samsung.so
+vendor/lib/libsnap_caffe.so
+vendor/lib/libsnap_caffe_wrapper.so
+vendor/lib/libsnap_compute.so
+vendor/lib/libsnap_compute_wrapper.so
+vendor/lib/libsnap_vndk.so
+vendor/lib/libsomp.camera.samsung.so
+vendor/lib/libvxu.so
+vendor/lib/libxcv.camera.samsung.so
+vendor/lib64/libDLInterface.camera.samsung.so
+vendor/lib64/libOpenCv.camera.samsung.so
+vendor/lib64/libhifistill.so
+vendor/lib64/libhifistill_tuning.so
+vendor/lib64/libhumantracking_util.camera.samsung.so
+vendor/lib64/libiva_android_hal.so
+vendor/lib64/libopenvx.so
+vendor/lib64/libsmart_cropping.camera.samsung.so
+vendor/lib64/libsnap_caffe.so
+vendor/lib64/libsnap_caffe_wrapper.so
+vendor/lib64/libsnap_compute.so
+vendor/lib64/libsnap_compute_wrapper.so
+vendor/lib64/libsnap_vndk.so
+vendor/lib64/libsomp.camera.samsung.so
+vendor/lib64/libvxu.so
+vendor/lib64/libxcv.camera.samsung.so
 
 # DRM
 vendor/lib/mediadrm/libwvdrmengine.so
@@ -71,6 +143,52 @@ vendor/lib64/libegis_fp_normal_sensor_test.so
 vendor/lib64/libgf_in_system_lib.so
 vendor/lib64/libqfp_sensortest.so
 vendor/lib64/libsynaFpSensorTestNwd.so
+
+# Firmware
+vendor/etc/plmn_delta.bin
+vendor/etc/plmn_delta_attaio.bin
+vendor/etc/plmn_delta_usacdma.bin
+vendor/etc/plmn_delta_usagsm.bin
+vendor/etc/plmn_se13.bin
+vendor/firmware/APBargeIn_AUDIO_SLSI.bin
+vendor/firmware/APBiBF_AUDIO_SLSI.bin
+vendor/firmware/AP_AUDIO_SLSI.bin
+vendor/firmware/SoundBoosterParam.bin
+vendor/firmware/bcm4361B0_murata.hcd
+vendor/firmware/bcm4361B0_semco.hcd
+vendor/firmware/calliope_dram.bin
+vendor/firmware/calliope_iva.bin
+vendor/firmware/calliope_sram.bin
+vendor/firmware/companion_2l2_master_setfile.bin
+vendor/firmware/companion_2l2_mode_setfile.bin
+vendor/firmware/companion_fw_2l2_3h1.bin
+vendor/firmware/companion_fw_2l2_imx320.bin
+vendor/firmware/companion_fw_imx333_3h1.bin
+vendor/firmware/companion_fw_imx333_imx320.bin
+vendor/firmware/companion_imx333_master_setfile.bin
+vendor/firmware/companion_imx333_mode_setfile.bin
+vendor/firmware/dsm.bin
+vendor/firmware/dsm_tune.bin
+vendor/firmware/fimc_is_lib.bin
+vendor/firmware/fimc_is_rta_2l2_3h1.bin
+vendor/firmware/fimc_is_rta_2l2_imx320.bin
+vendor/firmware/fimc_is_rta_imx333_3h1.bin
+vendor/firmware/fimc_is_rta_imx333_imx320.bin
+vendor/firmware/iva10_rt-kangchen.bin
+vendor/firmware/mfc_fw.bin
+vendor/firmware/nfc/sec_s3nrn82_firmware.bin
+vendor/firmware/ois_fw_dom.bin
+vendor/firmware/ois_fw_sec.bin
+vendor/firmware/score_fw_dmb0.bin
+vendor/firmware/score_fw_dmb1.bin
+vendor/firmware/score_fw_pmw0.bin
+vendor/firmware/score_fw_pmw1.bin
+vendor/firmware/setfile_2l2.bin
+vendor/firmware/setfile_3h1.bin
+vendor/firmware/setfile_3m3.bin
+vendor/firmware/setfile_imx320.bin
+vendor/firmware/setfile_imx333.bin
+vendor/firmware/vts.bin
 
 # GPS
 etc/gps_debug.conf
