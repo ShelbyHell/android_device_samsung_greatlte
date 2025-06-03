@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE_COMMON=universal8895-common
+DEVICE=greatlte
 VENDOR=samsung
 
 # Load extract_utils and do some sanity checks
@@ -25,10 +25,10 @@ fi
 source "${HELPER}"
 
 # Initialize the helper
-setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
+setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}"
 
 # Warning headers and guards
-write_headers "dreamlte dream2lte greatlte"
+write_headers
 
 write_makefiles "${MY_DIR}/proprietary-files.txt" true
 

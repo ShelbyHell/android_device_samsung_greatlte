@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE_COMMON=universal8895-common
+DEVICE=greatlte
 VENDOR=samsung
 
 # Load extract_utils and do some sanity checks
@@ -53,85 +53,55 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+function blob_fixup() {
+    case "${1}" in
+        vendor/etc/init/init.gps.rc)
+            sed -i -z "s/    seclabel u:r:gpsd:s0\n//" "${2}"
+            ;;
+        etc/gps_debug.conf)
+            sed -i "s/XTRA_SERVER_1/LONGTERM_PSDS_SERVER_1/" "${2}"
+            sed -i "s/XTRA_SERVER_2/LONGTERM_PSDS_SERVER_2/" "${2}"
+            ;;
+        vendor/bin/hw/gpsd)
+            sed -i "s/SSLv3_client_method/SSLv23_method\x00\x00\x00\x00\x00\x00/" "${2}"
+            ;;
+        lib/hw/audio.primary.exynos8895.so)
+            "${PATCHELF}" --add-needed libaudioparams_shim.so "${2}"
+            sed -i 's/str_parms_get_str/str_parms_get_mod/g' "${2}"
+            "${PATCHELF}" --remove-needed libaudio_soundtrigger.so "${2}"
+            "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so "${2}"
+            ;;
+        lib/android.hardware.gnss@1.0.so|lib/android.hardware.gnss@1.1.so|lib/libGrallocWrapper.so|lib/libskeymaster.so|lib/vendor.samsung.hardware.gnss@1.0.so|lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|lib64/android.hardware.gnss@1.0.so|lib64/android.hardware.gnss@1.1.so|lib64/libGrallocWrapper.so|lib64/libskeymaster.so|lib64/vendor.samsung.hardware.gnss@1.0.so|lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|vendor/bin/hw/android.hardware.drm@1.1-service.widevine|vendor/bin/hw/vendor.samsung.hardware.gnss@1.0-service|vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service|vendor/lib/libskeymaster3device.so|vendor/lib/libstagefright_bufferqueue_helper_vendor.so|vendor/lib/libstagefright_omx_vendor.so|vendor/lib/libwvhidl.so|vendor/lib/sensors.sensorhub.so|vendor/lib64/hw/android.hardware.gnss@1.1-impl.so|vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so|vendor/lib64/libskeymaster3device.so|vendor/lib64/sensors.sensorhub.so|vendor/lib64/libsec-ril-dsds.so|vendor/lib64/libsec-ril.so|vendor/lib/libsec-ril-dsds.so|vendor/lib/libsec-ril.so)
+            "${PATCHELF}" --remove-needed libhidltransport.so "${2}"
+            ;;
+        lib/android.hardware.gnss@1.0.so|lib/android.hardware.gnss@1.1.so|lib/vendor.samsung.hardware.gnss@1.0.so|lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|lib64/android.hardware.gnss@1.0.so|lib64/android.hardware.gnss@1.1.so|lib64/vendor.samsung.hardware.gnss@1.0.so|lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|vendor/bin/hw/android.hardware.drm@1.1-service.widevine|vendor/lib/libwvhidl.so|vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so|vendor/lib64/libsec-ril-dsds.so|vendor/lib64/libsec-ril.so|vendor/lib/libsec-ril-dsds.so|vendor/lib/libsec-ril.so)
+            "${PATCHELF}" --remove-needed libhwbinder.so "${2}"
+            ;;
+        vendor/lib/libwvhidl.so|vendor/lib/mediadrm/libwvdrmengine.so)
+            "${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so "${2}"
+            ;;
+        vendor/lib/libwrappergps.so|vendor/lib64/libwrappergps.so|lib/libaudio-ril.so)
+            "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so "${2}"
+            ;;
+        lib*/libexynoscamera.so)
+            "${PATCHELF}" --add-needed libexynoscamera_shim.so "${2}"
+            ;;
+        lib*/libblurdetection_interface.so|lib*/libfocuspeaking_interface.so)
+            "${PATCHELF}" --add-needed idev0_shim.so "${2}"
+            ;;
+        vendor/lib*/libexynosdisplay.so|vendor/lib*/hwcomposer.exynos5.so)
+            "${PATCHELF}" --add-needed libexynosdisplay_shim.so "${2}"
+            ;;
+        vendor/firmware/fimc_is_lib.bin|vendor/firmware/fimc_is_rta_2l2_3h1.bin|vendor/firmware/fimc_is_rta_2l2_imx320.bin|vendor/firmware/fimc_is_rta_imx333_3h1.bin|vendor/firmware/fimc_is_rta_imx333_imx320.bin)
+            hexdump -ve '1/1 "%.2X"' "${2}" | sed "s/40000054DEC0AD/02000014000000/g" | xxd -r -p > "${2}".patched
+            mv "${2}".patched "${2}"
+            ;;
+    esac
+}
 
 # Initialize the helper
-setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}" true
+setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
-
-# Fix proprietary blobs
-BLOB_ROOT="$ANDROID_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary
-
-sed -i -z "s/    seclabel u:r:gpsd:s0\n//" $BLOB_ROOT/vendor/etc/init/init.gps.rc
-
-# gps config
-sed -i "s/XTRA_SERVER_1/LONGTERM_PSDS_SERVER_1/" $BLOB_ROOT/etc/gps_debug.conf
-sed -i "s/XTRA_SERVER_2/LONGTERM_PSDS_SERVER_2/" $BLOB_ROOT/etc/gps_debug.conf
-
-# replace SSLv3_client_method with SSLv23_method
-sed -i "s/SSLv3_client_method/SSLv23_method\x00\x00\x00\x00\x00\x00/" $BLOB_ROOT/vendor/bin/hw/gpsd
-
-# Audio hal bt sco shim
-"${PATCHELF}" --add-needed libaudioparams_shim.so $BLOB_ROOT/lib/hw/audio.primary.exynos8895.so
-sed -i 's/str_parms_get_str/str_parms_get_mod/g' $BLOB_ROOT/lib/hw/audio.primary.exynos8895.so
-
-# Audio Drop SoundTrigger HAL
-"${PATCHELF}" --remove-needed libaudio_soundtrigger.so $BLOB_ROOT/lib/hw/audio.primary.exynos8895.so
-
-# Remove libhidltransport dependencie
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/android.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/android.hardware.gnss@1.1.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/libGrallocWrapper.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/libskeymaster.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/vendor.samsung.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/android.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/android.hardware.gnss@1.1.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/libGrallocWrapper.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/libskeymaster.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/vendor.samsung.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/bin/hw/android.hardware.drm@1.1-service.widevine
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/bin/hw/vendor.samsung.hardware.gnss@1.0-service
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libskeymaster3device.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libstagefright_bufferqueue_helper_vendor.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libstagefright_omx_vendor.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libwvhidl.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/sensors.sensorhub.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/hw/android.hardware.gnss@1.1-impl.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/libskeymaster3device.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/sensors.sensorhub.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/libsec-ril-dsds.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib64/libsec-ril.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libsec-ril-dsds.so
-"${PATCHELF}" --remove-needed libhidltransport.so $BLOB_ROOT/vendor/lib/libsec-ril.so
-# Remove libhwbinder dependencie
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib/android.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib/android.hardware.gnss@1.1.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib/vendor.samsung.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib64/android.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib64/android.hardware.gnss@1.1.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib64/vendor.samsung.hardware.gnss@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/bin/hw/android.hardware.drm@1.1-service.widevine
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib/libwvhidl.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib64/libsec-ril-dsds.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib64/libsec-ril.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib/libsec-ril-dsds.so
-"${PATCHELF}" --remove-needed libhwbinder.so $BLOB_ROOT/vendor/lib/libsec-ril.so
-
-# Protobuf
-"${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so $BLOB_ROOT/vendor/lib/libwvhidl.so
-"${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so $BLOB_ROOT/vendor/lib/mediadrm/libwvdrmengine.so
-
-# Replace libvndsecril-client with libsecril-client
-"${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib/libwrappergps.so
-"${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/vendor/lib64/libwrappergps.so
-"${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/lib/libaudio-ril.so
-"${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so $BLOB_ROOT/lib/hw/audio.primary.exynos8895.so
 
 "${MY_DIR}/setup-makefiles.sh"

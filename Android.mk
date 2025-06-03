@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/universal8895-common
+LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter dreamlte dream2lte greatlte, $(TARGET_DEVICE)),)
+ifeq ($(TARGET_DEVICE),greatlte)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
