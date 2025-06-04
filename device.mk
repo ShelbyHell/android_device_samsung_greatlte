@@ -122,6 +122,13 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.2-service \
     android.hardware.graphics.mapper@2.0-impl
 
+# HIDL
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
@@ -313,6 +320,10 @@ PRODUCT_PACKAGES += \
 # TextClassifier
 PRODUCT_PACKAGES += \
     textclassifier.bundle1
+
+# Touch HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.samsung
 
 # Trust HAL
 PRODUCT_PACKAGES += \
