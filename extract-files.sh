@@ -71,12 +71,6 @@ function blob_fixup() {
             "${PATCHELF}" --remove-needed libaudio_soundtrigger.so "${2}"
             "${PATCHELF}" --replace-needed libvndsecril-client.so libsecril-client.so "${2}"
             ;;
-        lib/android.hardware.gnss@1.0.so|lib/android.hardware.gnss@1.1.so|lib/libGrallocWrapper.so|lib/libskeymaster.so|lib/vendor.samsung.hardware.gnss@1.0.so|lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|lib64/android.hardware.gnss@1.0.so|lib64/android.hardware.gnss@1.1.so|lib64/libGrallocWrapper.so|lib64/libskeymaster.so|lib64/vendor.samsung.hardware.gnss@1.0.so|lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|vendor/bin/hw/android.hardware.drm@1.1-service.widevine|vendor/bin/hw/vendor.samsung.hardware.gnss@1.0-service|vendor/bin/hw/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0-service|vendor/lib/libskeymaster3device.so|vendor/lib/libstagefright_bufferqueue_helper_vendor.so|vendor/lib/libstagefright_omx_vendor.so|vendor/lib/libwvhidl.so|vendor/lib/sensors.sensorhub.so|vendor/lib64/hw/android.hardware.gnss@1.1-impl.so|vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so|vendor/lib64/libskeymaster3device.so|vendor/lib64/sensors.sensorhub.so|vendor/lib64/libsec-ril-dsds.so|vendor/lib64/libsec-ril.so|vendor/lib/libsec-ril-dsds.so|vendor/lib/libsec-ril.so)
-            "${PATCHELF}" --remove-needed libhidltransport.so "${2}"
-            ;;
-        lib/android.hardware.gnss@1.0.so|lib/android.hardware.gnss@1.1.so|lib/vendor.samsung.hardware.gnss@1.0.so|lib/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|lib64/android.hardware.gnss@1.0.so|lib64/android.hardware.gnss@1.1.so|lib64/vendor.samsung.hardware.gnss@1.0.so|lib64/vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0.so|vendor/bin/hw/android.hardware.drm@1.1-service.widevine|vendor/lib/libwvhidl.so|vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so|vendor/lib64/libsec-ril-dsds.so|vendor/lib64/libsec-ril.so|vendor/lib/libsec-ril-dsds.so|vendor/lib/libsec-ril.so)
-            "${PATCHELF}" --remove-needed libhwbinder.so "${2}"
-            ;;
         vendor/lib/libwvhidl.so|vendor/lib/mediadrm/libwvdrmengine.so)
             "${PATCHELF}" --replace-needed libprotobuf-cpp-lite.so libprotobuf-cpp-lite-v29.so "${2}"
             ;;

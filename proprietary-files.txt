@@ -1,7 +1,10 @@
+# All blobs from greatltexx-user 9 PPR1.180610.011 N950FXXUGDVG5 release-keys, unless pinned
+# Audio blobs from universal7885, LPM, RIL, Protobuf vendor variant from N975FXXU6ETLL (d2s), 
+
 # APNS
 etc/apns-conf.xml
 
-# Audio
+# Audio - from universal7885
 lib/hw/audio.primary.exynos8895.so|a67fccd9fd0ad77cf3bbfe7877f0d47fcd60bc70554bf027de3d4b3673c43bf3
 lib/libSamsungPostProcessConvertor.so|5e2a6ee980f6c3a57321fe4c982d9796e085549f00ba73908affb47cfaa69cd9
 lib/lib_SamsungRec_06006.so|0006c12aa0632099a49bb1b024bcf11049d4e73735a009723ff96976af8ce1c7
@@ -38,7 +41,6 @@ lib/libprofileparamstorage.so
 etc/audio_effects.conf
 vendor/etc/SoundBoosterParam.txt
 vendor/etc/abox_debug.xml
-vendor/etc/audio_effects.conf
 vendor/etc/audio_effects_common.conf
 vendor/etc/audio_effects_sec.xml
 vendor/etc/audio_policy.conf
@@ -47,9 +49,6 @@ vendor/etc/default_volume_tables.xml
 
 # Bluetooth
 vendor/lib64/libbt-vendor.so
-
-# Bluetooth (aptX) - from crosshatch - QP1A.190711.020
-product/lib64/libaptX_encoder.so|df1c89d7af1bb35808d5fe3496b04ba066c10cbc
 
 # Camera
 lib/hw/camera.universal8895.so:lib/hw/camera.vendor.universal8895.so
@@ -176,6 +175,7 @@ vendor/firmware/fimc_is_rta_imx333_3h1.bin
 vendor/firmware/fimc_is_rta_imx333_imx320.bin
 vendor/firmware/iva10_rt-kangchen.bin
 vendor/firmware/mfc_fw.bin
+vendor/firmware/nfc/BRI/sec_s3nrn82_firmware.bin
 vendor/firmware/nfc/sec_s3nrn82_firmware.bin
 vendor/firmware/ois_fw_dom.bin
 vendor/firmware/ois_fw_sec.bin
@@ -213,7 +213,7 @@ vendor/lib64/hw/vendor.samsung.hardware.gnss@1.0-impl.so
 vendor/lib64/hw/gps.default.so
 vendor/lib64/libwrappergps.so
 
-# Gatekeeper - from G950FXXS4CRLB
+# Gatekeeper
 vendor/lib/hw/gatekeeper.exynos8895.so
 vendor/lib64/hw/gatekeeper.exynos8895.so
 
@@ -330,7 +330,7 @@ vendor/lib64/libMcClient.so
 # NFC
 etc/libnfc-nci.conf
 vendor/etc/libnfc-sec-vendor.conf
-vendor/etc/nfc/SGP/sec_s3nrn82_rfreg.bin
+vendor/etc/nfc/BRI/sec_s3nrn82_rfreg.bin
 vendor/etc/nfc/sec_s3nrn82_rfreg.bin
 vendor/firmware/nfc/sec_s3nrn82_firmware.bin
 
@@ -368,10 +368,10 @@ lib64/omx/libOMX.Exynos.WMV.Decoder.so
 vendor/lib/libprotobuf-cpp-full-3.9.1.so|4290c27525874cb687d072dcfe20244e65685f2a
 vendor/lib64/libprotobuf-cpp-full-3.9.1.so|b9613d7b25ffd6ab31f7aa32a904aa6f5f4f9cdf
 
-# Radio - RIL
+# Radio
 vendor/etc/init/init.vendor.rilchip.rc
 
-# Radio - RIL - from N975FXXU6ETLL
+# RIL - from N975FXXU6ETLL
 vendor/bin/cbd|aae9a11fefb25f0293aa7da714a093d5f017d826
 vendor/bin/hw/rild|c77d17bde3312077a77a3a8238a62e649a996f44
 vendor/etc/mtu-conf.xml|0f17947b42293684e25db2cf97027c7deed66a31
@@ -425,6 +425,7 @@ vendor/lib/libstagefright_soft_ddpdec.so
 vendor/lib/libstagefright_soft_g711dec.so
 
 # WiFi
+vendor/etc/init/wifi.rc
 vendor/etc/init/wifi_brcm.rc
 vendor/etc/wifi/bcmdhd_clm.blob
 vendor/etc/wifi/bcmdhd_mfg.bin_b0
@@ -432,21 +433,7 @@ vendor/etc/wifi/bcmdhd_mfg.bin_b2
 vendor/etc/wifi/bcmdhd_mon.bin_b2
 vendor/etc/wifi/bcmdhd_sta.bin_b0
 vendor/etc/wifi/bcmdhd_sta.bin_b2
-vendor/etc/wifi/indoorchannel.info
-vendor/etc/wifi/nvram.txt
-vendor/etc/wifi/nvram.txt_a0
-vendor/etc/wifi/nvram.txt_a0_ePA
-vendor/etc/wifi/nvram.txt_murata_r012_a1
-vendor/etc/wifi/nvram.txt_murata_r013_b0
-vendor/etc/wifi/nvram.txt_murata_r014_b0
-vendor/etc/wifi/nvram.txt_murata_r020_b0
+vendor/etc/wifi/nvram.txt_murata_r031_b0
+vendor/etc/wifi/nvram.txt_murata_r032_b0
 vendor/etc/wifi/nvram.txt_murata_r033_b0
-vendor/etc/wifi/nvram.txt_r01a_a1
-vendor/etc/wifi/nvram.txt_r01d_b0
-vendor/etc/wifi/nvram.txt_r01f_b0
-vendor/etc/wifi/nvram.txt_r01i_b0
-vendor/etc/wifi/nvram.txt_r02a_a1
-vendor/etc/wifi/nvram.txt_r02c_a1
-vendor/etc/wifi/nvram.txt_r02g_b0
 vendor/etc/wifi/nvram.txt_r02j_b0
-vendor/etc/wifi/p2p_supplicant_overlay.conf
