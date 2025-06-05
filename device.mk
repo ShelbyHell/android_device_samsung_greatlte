@@ -27,6 +27,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@7.0-impl:32 \
     android.hardware.audio.effect@7.0-impl:32 \
     android.hardware.bluetooth.audio@2.0-impl \
+    audio.a2dp.default \
     audio.bluetooth.default \
     audio.r_submix.default \
     audio.usb.default \
@@ -34,7 +35,6 @@ PRODUCT_PACKAGES += \
     libeffects \
     libspeexresampler \
     libaudioutils \
-    audio.a2dp.default \
     libtinycompress
 
 PRODUCT_PACKAGES += \
@@ -64,9 +64,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_HOST_PACKAGES += dtbhtoolExynos
 
 # Boot animation
-TARGET_BOOTANIMATION_HALF_RES := true
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 TARGET_SCREEN_HEIGHT := 2960
 TARGET_SCREEN_WIDTH := 1440
 
@@ -101,6 +98,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.4-service.clearkey \
     android.hardware.drm@1.0-impl
+
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -282,10 +283,6 @@ PRODUCT_PACKAGES += \
     libxml2 \
     secril_config_svc
 
-# SamsungDoze
-PRODUCT_PACKAGES += \
-    SamsungDoze
-
 # Seccomp filters
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy \
@@ -312,14 +309,6 @@ PRODUCT_PACKAGES += \
 # Sysconfigs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
-
-# Touch HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.samsung
-
-# TextClassifier
-PRODUCT_PACKAGES += \
-    textclassifier.bundle1
 
 # Touch HAL
 PRODUCT_PACKAGES += \
