@@ -334,16 +334,9 @@ $(call inherit-product, vendor/samsung/greatlte/greatlte-vendor.mk)
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-    wifiloader \
-    hostapd \
-    wificond \
-    wifilogd \
-    wlutil \
-    libwpa_client \
-    TetheringConfigOverlay \
-    wpa_supplicant \
-    wpa_supplicant.conf \
     WifiOverlay \
+    TetheringConfigOverlay \
     android.hardware.wifi@1.0-service \
-    android.hardware.wifi@1.0 \
-    android.hardware.wifi@1.0-impl
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf
