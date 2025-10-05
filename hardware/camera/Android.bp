@@ -1,5 +1,5 @@
 cc_library_shared {
-    name: "camera.exynos5",
+    name: "camera.universal8895",
     relative_install_path: "hw",
 
     srcs: [
